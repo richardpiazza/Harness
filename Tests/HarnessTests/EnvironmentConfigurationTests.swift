@@ -36,7 +36,7 @@ final class EnvironmentConfigurationTests: XCTestCase {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .sortedKeys
         
-        var config: TestConfiguration? = nil
+        var config: TestConfiguration?
         var environment: [String: String] = TestConfiguration.environmentVariables(forConfiguration: config)
         
         XCTAssertTrue(environment.isEmpty)

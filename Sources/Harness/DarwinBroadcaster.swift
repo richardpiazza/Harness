@@ -82,7 +82,13 @@ open class DarwinBroadcaster {
 }
 
 /// Function that is executed when a specific registered notification is delivered.
-private func handleDarwinNotification(center: CFNotificationCenter?, observer: UnsafeMutableRawPointer?, name: CFNotificationName?, object: UnsafeRawPointer?, userInfo: CFDictionary?) {
+private func handleDarwinNotification(
+    center: CFNotificationCenter?,
+    observer: UnsafeMutableRawPointer?,
+    name: CFNotificationName?,
+    object: UnsafeRawPointer?,
+    userInfo: CFDictionary?
+) {
     guard let observer = observer, let name = name else {
         return
     }
