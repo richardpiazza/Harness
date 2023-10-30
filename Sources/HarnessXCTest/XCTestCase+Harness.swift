@@ -6,7 +6,7 @@ public extension XCTestCase {
     ///
     /// This acts as a thread-safe replacement for using the `Darwin.sleep()` function.
     func delay(for timeout: TimeInterval) {
-        _ = DispatchSemaphore(value: 0) .wait(timeout: .now() + timeout)
+        _ = DispatchSemaphore(value: 0).wait(timeout: .now() + timeout)
     }
 }
 
