@@ -16,9 +16,16 @@ let package = Package(
         .library(
             name: "Harness",
             targets: [
+                "Harness"
+            ]
+        ),
+        .library(
+            name: "HarnessXCTest",
+            targets: [
                 "Harness",
                 "HarnessXCTest"
-            ]),
+            ]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -29,12 +36,21 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Harness",
-            dependencies: []),
+            dependencies: [
+            ]
+        ),
         .target(
             name: "HarnessXCTest",
-            dependencies: ["Harness"]),
+            dependencies: [
+                "Harness"
+            ]
+        ),
         .testTarget(
             name: "HarnessTests",
-            dependencies: ["Harness", "HarnessXCTest"]),
+            dependencies: [
+                "Harness",
+                "HarnessXCTest"
+            ]
+        ),
     ]
 )
