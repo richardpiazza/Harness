@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,25 +6,27 @@ import PackageDescription
 let package = Package(
     name: "Harness",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v14),
-        .tvOS(.v14),
-        .watchOS(.v7)
+        .macOS(.v13),
+        .macCatalyst(.v16),
+        .iOS(.v16),
+        .tvOS(.v16),
+        .watchOS(.v9),
+        .visionOS(.v1), // .v2 ~ iOS 18
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Harness",
             targets: [
-                "Harness"
-            ]
+                "Harness",
+            ],
         ),
         .library(
             name: "HarnessXCTest",
             targets: [
                 "Harness",
-                "HarnessXCTest"
-            ]
+                "HarnessXCTest",
+            ],
         ),
     ],
     dependencies: [
@@ -37,20 +39,20 @@ let package = Package(
         .target(
             name: "Harness",
             dependencies: [
-            ]
+            ],
         ),
         .target(
             name: "HarnessXCTest",
             dependencies: [
-                "Harness"
-            ]
+                "Harness",
+            ],
         ),
         .testTarget(
             name: "HarnessTests",
             dependencies: [
                 "Harness",
-                "HarnessXCTest"
-            ]
+                "HarnessXCTest",
+            ],
         ),
-    ]
+    ],
 )

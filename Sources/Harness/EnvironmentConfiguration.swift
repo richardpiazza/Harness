@@ -6,16 +6,16 @@ public protocol EnvironmentConfiguration: Codable {
     static var environmentKey: String { get }
 }
 
-internal struct EnvironmentKey: CodingKey {
+struct EnvironmentKey: CodingKey {
     var stringValue: String
     var intValue: Int?
-    
+
     init(stringValue: String) {
         self.stringValue = stringValue
     }
-    
+
     init?(intValue: Int) {
-        self.stringValue = "\(intValue)"
+        stringValue = "\(intValue)"
         self.intValue = intValue
     }
 }
@@ -36,12 +36,12 @@ public extension EnvironmentConfiguration {
             let context = DecodingError.Context(codingPath: [key], debugDescription: "An environment key was not found in the provided dictionary.")
             throw DecodingError.keyNotFound(key, context)
         }
-        
+
         let data = json.data(using: .utf8) ?? Data()
-        
+
         return try decoder.decode(Self.self, from: data)
     }
-    
+
     /// Constructs a _Key-Value_ dictionary for a given configuration.
     ///
     /// - parameters:
@@ -50,15 +50,15 @@ public extension EnvironmentConfiguration {
     /// - returns: A dictionary keyed by the `environmentKey` of the configuration type.
     static func environmentVariables(forConfiguration config: Self?, encoder: JSONEncoder = .init()) -> [String: String] {
         var environment: [String: String] = [:]
-        
+
         if let configuration = config, let data = try? encoder.encode(configuration) {
             let json = String(data: data, encoding: .utf8)
             environment[environmentKey] = json
         }
-        
+
         return environment
     }
-    
+
     /// A JSON representation of the configuration that does not 'escaping slashes'.
     var unescapedJSON: String {
         let encoder: JSONEncoder = .init()
@@ -71,7 +71,7 @@ public extension EnvironmentConfiguration {
         } catch {
             print(error)
         }
-        
+
         return "{}"
     }
 }

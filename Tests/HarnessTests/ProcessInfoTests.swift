@@ -1,9 +1,9 @@
-import XCTest
 @testable import Harness
+import XCTest
 
 final class ProcessInfoTests: XCTestCase {
-    
-    func testTargetChecks() throws {
+
+    func testTargetChecks() {
         XCTAssertTrue(ProcessInfo.processInfo.isTargetTest)
     }
 }
