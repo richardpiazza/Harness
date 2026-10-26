@@ -1,13 +1,13 @@
 #if canImport(XCTest) && canImport(UIKit)
-import XCTest
 import UIKit
+import XCTest
 
 public extension XCUIElement {
     /// Asserts that an element matches the conditions **exists**, **isEnabled**, and **isHittable**.
     var isVisible: Bool {
-        return exists && isEnabled && isHittable
+        exists && isEnabled && isHittable
     }
-    
+
     /// Waits for the existence of an element.
     ///
     /// If the check fails, an `XCTFail` assertion will be made.
@@ -22,7 +22,7 @@ public extension XCUIElement {
             XCTFail(message, file: file, line: line)
         }
     }
-    
+
     /// Confirms the elements existence and then _taps_ it a specified number of times.
     ///
     /// - parameters:
@@ -36,7 +36,7 @@ public extension XCUIElement {
         waitForExistence(timeout: timeout, message: message, file: file, line: line)
         tap(withNumberOfTaps: numberOfTaps, numberOfTouches: numberOfTouches)
     }
-    
+
     /// Confirms the elements existence and then _long-presses_ it for a specified amount of time.
     ///
     /// - parameters:
@@ -49,7 +49,7 @@ public extension XCUIElement {
         waitForExistence(timeout: timeout, message: message, file: file, line: line)
         press(forDuration: duration)
     }
-    
+
     /// Activates the element with a _tap_ then types the specified text.
     ///
     /// - parameters:

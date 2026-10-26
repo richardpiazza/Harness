@@ -1,9 +1,18 @@
-import XCTest
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
+import Foundation
+#endif
 @testable import Harness
+import Testing
 
-final class ProcessInfoTests: XCTestCase {
-    
-    func testTargetChecks() throws {
-        XCTAssertTrue(ProcessInfo.processInfo.isTargetTest)
+struct ProcessInfoTests {
+
+    let processInfo = ProcessInfo.processInfo
+
+    @Test func testTargetChecks() {
+        #expect(processInfo.isTargetTest)
+        print(processInfo.environment)
+        print(processInfo.arguments)
     }
 }

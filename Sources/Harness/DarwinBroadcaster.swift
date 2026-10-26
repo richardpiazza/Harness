@@ -1,4 +1,5 @@
 import Foundation
+
 #if canImport(ObjectiveC)
 
 /// Provides simplistic inter-app communications via a _Darwin Notification Center_.
@@ -26,7 +27,7 @@ open class DarwinBroadcaster {
 
     /// A unsafe raw pointer to _this_ instance needed for the `CFNotificationCenter`.
     private var unsafeSelf: UnsafeRawPointer {
-        return UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque())
+        UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque())
     }
 
     /// Initializes a `Broadcaster` with a unique prefix.
@@ -63,7 +64,7 @@ open class DarwinBroadcaster {
         CFNotificationCenterPostNotification(notificationCenter, notificationName(identifier), nil, nil, true)
     }
 
-    final internal func handle(_ notificationName: CFNotificationName) {
+    final func handle(_ notificationName: CFNotificationName) {
         handle(identifier(notificationName))
     }
 
@@ -72,7 +73,7 @@ open class DarwinBroadcaster {
     }
 
     private func notificationName(_ identifier: Identifier) -> CFNotificationName {
-        return CFNotificationName(rawValue: (prefix + identifier.rawValue as CFString))
+        CFNotificationName(rawValue: prefix + identifier.rawValue as CFString)
     }
 
     private func identifier(_ notificationName: CFNotificationName) -> Identifier {
@@ -87,9 +88,9 @@ private func handleDarwinNotification(
     observer: UnsafeMutableRawPointer?,
     name: CFNotificationName?,
     object: UnsafeRawPointer?,
-    userInfo: CFDictionary?
+    userInfo: CFDictionary?,
 ) {
-    guard let observer = observer, let name = name else {
+    guard let observer, let name else {
         return
     }
 
