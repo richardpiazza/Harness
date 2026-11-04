@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 public extension ProcessInfo {
     /// Indication if the current process is running for SwiftUI Previews

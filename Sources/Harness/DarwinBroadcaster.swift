@@ -1,6 +1,5 @@
-import Foundation
-
 #if canImport(ObjectiveC)
+import Foundation
 
 /// Provides simplistic inter-app communications via a _Darwin Notification Center_.
 ///
@@ -8,7 +7,7 @@ import Foundation
 open class DarwinBroadcaster {
 
     /// A stable/unique identifier used to distinguish notifications.
-    public struct Identifier: Hashable, ExpressibleByStringLiteral {
+    public struct Identifier: Hashable, Sendable, ExpressibleByStringLiteral {
         public let rawValue: String
         public init(stringLiteral value: String) {
             rawValue = value

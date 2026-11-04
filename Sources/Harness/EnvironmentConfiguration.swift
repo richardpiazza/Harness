@@ -1,4 +1,8 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
 
 /// A service configuration that can be expressed via JSON.
 public protocol EnvironmentConfiguration: Codable {
